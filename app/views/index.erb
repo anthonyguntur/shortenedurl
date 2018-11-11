@@ -1,0 +1,23 @@
+
+<div class="mui-row">
+    <div class="mui-col-md-12">
+        <h1>Shorten URL</h1>
+
+        <form method="post" action="/shorten" class="mui-form"> 
+
+            <div class="mui-textfield">
+                <input type="text" placeholder="www.google.com" name="original_url" id="originalurl"/>
+            </div>
+
+            <button type="submit" class="mui-btn mui-btn--primary">Shorten</button>
+        </form>
+
+        <% if flash.has?(:success) %>
+            <h3 class="success"><%= flash[:success] %></h3>
+        <% end %>
+
+        <% if flash.has?(:error) %>
+            <h3 class="error"><%= flash[:error] %></h3>
+        <% end %>
+    </div>
+</div>
