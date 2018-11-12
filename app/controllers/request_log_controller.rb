@@ -7,19 +7,31 @@ class RequestLogController < ApplicationController
     @ori = find_original_url(params[:shortcode])
 
     if @ori
-        user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
-        
-        @request_log = RequestLog.new(shortcode: params[:shortcode].to_s, user_agent: user_agent.to_s, url_id: @ori.id)
+      user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
+      
+      @request_log = RequestLog.new(shortcode: params[:shortcode].to_s, user_agent: user_agent.to_s, url_id: @ori.id)
 
-        if @request_log.save()
-          redirect "#{@ori.original_url}"
-        else
-          flash[:error] = "Request Log Failed"
-          redirect to :"/"
-        end
-    else
-        flash[:error] = "404 Not Found"
+      if @request_log.save
+        redirect "#{@ori.original_url}"
+      else
+        flash[:error] = "Request Log Failed"
         redirect to :"/"
+      end
+    else
+      flash[:error] = "404 Not Found"
+      redirect to :"/"
+    end
+  end
+
+  get '/request/log' do 
+    @request_logs = RequestLog.all
+
+    if @request_logs
+      content_type :json
+      @request_logs.to_json
+    else
+      flash[:error] = "404 Not Found"
+      redirect to :"/"
     end
   end
 

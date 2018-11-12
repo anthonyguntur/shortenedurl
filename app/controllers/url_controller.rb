@@ -12,12 +12,12 @@ class UrlController < ApplicationController
       shorten_url = request.base_url + '/' + shortcode
       @url = Url.new(original_url: original_url.to_s, shorten_url: shorten_url.to_s, shortcode: shortcode.to_s)
       
-      if @url.save()
-          flash[:success] = shorten_url
-          redirect to "/"
+      if @url.save
+        flash[:success] = shorten_url
+        redirect to "/"
       else
-          flash[:error] = "Please ensure you have filled in all required fields correctly!"
-          redirect to "/"
+        flash[:error] = "Please ensure you have filled in all required fields correctly!"
+        redirect to "/"
       end
     end
   end

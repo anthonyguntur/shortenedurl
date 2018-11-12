@@ -1,4 +1,5 @@
 require './config/environment'
+require 'json'
 
 class ApplicationController < Sinatra::Base
 
