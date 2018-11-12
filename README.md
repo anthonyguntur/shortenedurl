@@ -4,6 +4,6 @@
 
 After checking out the repo, run `bundle install` to install Ruby gem dependencies.
 
-You can start one of Rack's supported servers using the [shotgun](https://github.com/rtomayko/shotgun) command `shotgun`
+Run the `rake db:migrate` and you can start the application with `shotgun`
 
-Shotgun can be used as an alternative to the complex reloading logic provided by web frameworks or in environments that don't support application reloading.
+Access `http://127.0.0.7:9393` from your browser to use the shorten url application
